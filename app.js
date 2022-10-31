@@ -32,19 +32,23 @@ var createNewTaskElement=function(taskString){
     var deleteButton=document.createElement("button");//delete button
     var deleteButtonImg=document.createElement("img");//delete button image
 
+    listItem.className="list-item"
+
     label.innerText=taskString;
-    label.className='task-label';
+    label.className='label task-label';
 
     //Each elements, needs appending
     checkBox.type="checkbox";
+    checkBox.className="input"
     editInput.type="text";
-    editInput.className="task-input";
+    editInput.className="input task-input";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="edit-btn";
+    editButton.className="btn edit-btn";
 
-    deleteButton.className="delete-btn";
+    deleteButton.className="btn delete-btn";
     deleteButtonImg.src='./remove.svg';
+    deleteButtonImg.className="delete-btn-img"
     deleteButton.appendChild(deleteButtonImg);
 
 
@@ -83,9 +87,11 @@ var editTask=function(){
     var listItem=this.parentNode;
 
     var editInput=listItem.querySelector('input[type=text]');
-    var label=listItem.querySelector("label");
+    var label=listItem.querySelector(".label");
     var editBtn=listItem.querySelector(".edit-btn");
     var containsClass=listItem.classList.contains("edit-mode");
+    console.log(listItem,label,editBtn,containsClass,editInput,'lox');
+
     //If class of the parent is .editmode
     if(containsClass){
 
@@ -155,9 +161,9 @@ addButton.addEventListener("click",ajaxRequest);
 var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
     console.log("bind list item events");
 //select ListItems children
-    var checkBox=taskListItem.querySelector("input[type=checkbox]");
-    var editButton=taskListItem.querySelector("button.edit-btn");
-    var deleteButton=taskListItem.querySelector("button.delete-btn");
+    var checkBox=taskListItem.querySelector(".input[type=checkbox]");
+    var editButton=taskListItem.querySelector(".edit-btn");
+    var deleteButton=taskListItem.querySelector(".delete-btn");
 
 
     //Bind editTask to edit button.
